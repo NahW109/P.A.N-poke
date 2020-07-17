@@ -3,7 +3,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-
+from datetime import datetime
 
 # -- Initialization section --
 app = Flask(__name__)
@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html")
+    return render_template("index.html" , time=datetime.now())
 
 @app.route('/results', methods=['GET', 'POST'])
 
@@ -21,12 +21,13 @@ def results():
     #print(user_pokedex)
     dex_number=request.form["pokedex"]
     if dex_number == "1":
-        return render_template("results.html",dex_number= dex_number)
+        return render_template("results.html",dex_number= dex_number,time=datetime.now())
     elif dex_number == "2":
-        return render_template("pokemon2.html",dex_number= dex_number)
-    else:
-        return "test"   
-    
+        return render_template("pokemon2.html",dex_number= dex_number, time=datetime.now()) 
+    elif dex_number == "3": 
+        return render_template("pokemon3.html",dex_number= dex_number, time=datetime.now())
+
+
 #@app.route('/pokemon2', methods=['GET', 'POST'])
 
 # def pokemon2():
